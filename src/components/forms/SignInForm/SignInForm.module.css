@@ -1,0 +1,14 @@
+.form{
+  width: 300px;
+  display: flex;
+  flex-direction:column;
+margin:15px auto}
+.input{
+  margin-top:1em
+}
+.valid{
+  border-color:blue;
+}
+.invalid{
+  background-color: red;
+}
