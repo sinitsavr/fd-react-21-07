@@ -1,16 +1,13 @@
-import React, { Component } from "react";
-import CiaoList from "./components/CiaoList";
+import React from "react";
 import "./App.css";
+import CiaoSection from "./components/CiaoSection";
 
-const App = ()=> {
-  
-    return (
-      <>
-      
-              <CiaoList/>
-         
-      </>
-    )
-}
+const App = () => {
+  return (
+    <>
+      <CiaoSection />
+    </>
+  );
+};
 
 export default App;
