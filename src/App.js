@@ -1,15 +1,12 @@
-import React from "react";
-import "./App.css";
-import SignInForm from "./components/forms/SignInForm";
+import './App.css';
+import StopWatch from './components/StopWatch';
 
-
-
-const App = () => {
+function App() {
   return (
     <>
-    <SignInForm />
+    <StopWatch/>
     </>
   );
-};
+}
 
 export default App;
