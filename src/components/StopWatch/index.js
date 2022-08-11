@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./StopWatch.module.css";
+import styles from "./StopWatch.module.scss";
 
 class StopWatch extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ class StopWatch extends Component {
     this.state = {
       time: new Date(0, 0, 0, 0, 0, 0),
     };
-    this.intervalId = null;
+    this.timerId = null;
   }
   tick = () => {
     // const { time } = this.state;
@@ -21,28 +21,27 @@ class StopWatch extends Component {
   };
   start = () => {
     // this.stop();
-    if (this.intervalId === null) {
-      this.intervalId = setInterval(this.tick, 1000);
+    if (this.timerId === null) {
+      this.timerId = setTimeout(this.tick, 1000);
     }
   };
   stop = () => {
-    clearInterval(this.intervalId);
-    this.intervalId = null;
+    clearTimeout(this.timerId);
+    this.timerId = null;
   };
   reset = () => {
     this.stop();
     this.setState({ time: new Date(0, 0, 0, 0, 0, 0) });
   };
-  componentDidMount() {
-    //this.start()
-    console.log("componentDidMount");
+  componentDidUpdate() {
+    if (this.timerId !== null) {
+      this.timerId = null;
+      this.start();
+    }
   }
-  componentDidUpdate(){
-    console.log('componentDidUpdate')
-  }
+
   componentWillUnmount() {
-    console.log("componentWillUnmount");
-    this.reset();
+    clearTimeout(this.timerId);
   }
 
   render() {
@@ -50,7 +49,7 @@ class StopWatch extends Component {
     console.log("render");
     return (
       <article className={styles.container}>
-        <h2>{time.toLocaleTimeString("en-GB")}</h2>
+        <h2 className={styles.heading}>{time.toLocaleTimeString("en-GB")}</h2>
         <div>
           <button onClick={this.start}>start</button>
           <button onClick={this.stop}>stop</button>
